@@ -14,5 +14,5 @@ task :run do
 end
 
 task :test do
-  ruby 'test/example_test.rb'
+  ruby 'test/*.rb -v'
 end

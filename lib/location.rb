@@ -8,17 +8,28 @@ class HistoricLocation
     first, last = lists
     @right_list = first.sort
     @left_list = last.sort
+    @distances = []
   end
 
   def total_distance
-    distances = []
     @right_list.each.with_index do |location, index|
       if location > @left_list[index]
-        distances.push(location - @left_list[index])
+        @distances.push(location - @left_list[index])
       else
-        distances.push(@left_list[index] - location)
+        @distances.push(@left_list[index] - location)
       end
     end
-    distances.sum
+    self
+  end
+
+  def similarity_score
+    @left_list.each do |location|
+      @distances.push(location * @right_list.count(location))
+    end
+    self
+  end
+
+  def answer
+    @distances.sum
   end
 end

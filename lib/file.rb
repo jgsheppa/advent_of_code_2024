@@ -6,6 +6,10 @@ class AdventFile
     @filepath = filepath
   end
 
+  def read_reports
+    File.read(@filepath).split("\n")
+  end
+
   def read_locations
     lines = File.read(@filepath).split
 
